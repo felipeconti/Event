@@ -1,0 +1,37 @@
+<h2>Viagens</h2>
+
+<table class="table table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th id="detail">Detalhes</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th><%=t 'actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trips.each do |trip| %>
+      <tr>
+      <td><%= link_to '',
+              trip,
+              :class=>"icon-search" %></td>
+        <td><%=trip.name%></td>
+        <td><%= trip.description %></td>
+        <td class="btn_actions">
+          <%= link_to t('edit', :default => t("helpers.links.edit")),
+                      edit_trip_path(trip), :class => 'btn btn-mini' %>
+          <%= link_to t('destroy', :default => t("helpers.links.destroy")),
+                      trip,
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t('sure'))) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Viagem', new_trip_path %>
