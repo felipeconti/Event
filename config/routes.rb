@@ -1,7 +1,7 @@
 Sitio::Application.routes.draw do
   resources :trips
 
-  devise_for :users
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
 
   root :to => "trips#index"
 
