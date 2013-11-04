@@ -85,6 +85,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     multipart-post (1.2.0)
+    mysql2 (0.3.13)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -97,6 +98,9 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-github (1.1.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -200,8 +204,10 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
+  mysql2
   omniauth
   omniauth-facebook
+  omniauth-github
   omniauth-twitter
   pry-meta
   rails (= 4.0.0)

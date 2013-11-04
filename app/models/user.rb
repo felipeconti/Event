@@ -5,11 +5,9 @@ class User < ActiveRecord::Base
 	devise  :database_authenticatable, :registerable,
 			:recoverable, :rememberable, :trackable, :validatable,
 			:omniauthable, 
-	 		:omniauth_providers => [:facebook, :twitter]
+	 		:omniauth_providers => [:facebook, :github]
 
-	has_many :authentications
-
-	# attr_accessible :nickname, :name, :remember_me
+	has_many :authentications, :dependent => :delete_all
 
 	validates_presence_of :name
 	validates_format_of :email, with: /\A.+@.+\..{2,4}\z/
@@ -22,14 +20,6 @@ class User < ActiveRecord::Base
 	# 		end
 	# 	end
 	# end
-
-	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-		find_for_oauth(auth, signed_in_resource)
-	end
-
-	def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-		find_for_oauth(auth, signed_in_resource)
-	end
 
 	def self.find_for_oauth(auth, signed_in_resource=nil)
 		# require "pry"; binding.pry
@@ -44,9 +34,20 @@ class User < ActiveRecord::Base
 				email = auth.info.email
 			end
 
-			user = User.create!(name: auth.info.name,
-			                    email: email,
-			                    password: Devise.friendly_token[0,20])
+			if auth.info.name.blank?
+				name = auth.info.nickname
+			else
+				name = auth.info.name
+			end
+
+			user = User.find_by_email(email)
+
+			unless user
+				user = User.create!(name: name,
+				                    email: email,
+				                    password: Devise.friendly_token[0,20])	
+			end
+			
 			user.authentications.create!(:provider => auth.provider, :uid => auth.uid)
 			user.save
 			user
