@@ -37,56 +37,70 @@
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </head>
   <body>
-
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">Trips</a>
-          <div class="container-fluid nav-collapse">
-      			<p class="navbar-text pull-right">
-      				<% if user_signed_in? %>
-      					Logged in as <strong><%= current_user.name %></strong>.
-      					<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      					<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-      				<% else %>
-      					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      					<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-      				<% end %>
-      			</p>
-          </div><!--/.nav-collapse -->
+    <div id="wrap">
+      <div class="navbar navbar-fluid-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">Trips</a>
+            <div class="container-fluid nav-collapse">
+        			<p class="navbar-text pull-right">
+        				<% if user_signed_in? %>
+        					Logged in as <strong><%= current_user.name %></strong>.
+        					<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+        					<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        				<% else %>
+        					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+        					<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+        				<% end %>
+        			</p>
+            </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
+
+      <!-- <div id="main"> -->
+
+        <div class="container-fluid">
+
+          <div class="row-fluid">
+
+            <% if user_signed_in? %>
+
+              <div class="span2">
+                <div class="well sidebar-nav">
+                  <ul class="nav nav-list">
+                    <li class="nav-header">Menu</li>
+                    <li><%= link_to "Trips", "/trips"%></li>
+                    <li><%= link_to "Votes", "/"%></li>
+                  </ul>
+                </div><!--/.well -->
+              </div><!--/span-->
+
+            <% end %>
+
+            <div class="span10">
+      			<%= bootstrap_flash %>
+      			<%= yield %>
+            </div>
+
+          </div><!--/row-->
+
+        </div> <!-- /container -->
+
+      <!-- <div> --> <!-- /main -->
+
+    </div> <!-- /Wrap -->
+
+    <div id="footer">
+      <div class="container">
+        <p class="muted credits">Trip &copy;</p>
+      </div>
     </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Menu</li>
-              <li><%= link_to "Trips", "/trips"%></li>
-              <li><%= link_to "Votes", "/"%></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span10">
-			<%= bootstrap_flash %>
-			<!-- <p class="notice"><%= notice %></p> -->
-			<!-- <p class="alert"><%= alert %></p> -->
-			<%= yield %>
-        </div>
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
 
   </body>
 </html>

@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -43,10 +43,18 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "pry-meta"
+end
+
 gem "devise"
 gem "therubyracer", platforms: :ruby
 gem "omniauth"
 gem "omniauth-facebook"
+gem "omniauth-twitter"
 gem "pry-meta", group: :development
 gem "dotenv-rails"
 
@@ -55,3 +63,5 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 
 gem "simple_form"
+
+# gem "dotenv-rails"

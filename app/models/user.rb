@@ -1,30 +1,56 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+	# Include default devise modules. Others available are:
+	# :confirmable, :lockable, :timeoutable and :omniauthable
 
+	devise  :database_authenticatable, :registerable,
+			:recoverable, :rememberable, :trackable, :validatable,
+			:omniauthable, 
+	 		:omniauth_providers => [:facebook, :twitter]
 
-	def self.new_with_session(params, session)
-		super.tap do |user|
-			if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-				user.email = data["email"] if user.email.blank?
-			end
-		end
-	end
+	has_many :authentications
+
+	# attr_accessible :nickname, :name, :remember_me
+
+	validates_presence_of :name
+	validates_format_of :email, with: /\A.+@.+\..{2,4}\z/
+	validates_uniqueness_of :email
+
+	# def self.new_with_session(params, session)
+	# 	super.tap do |user|
+	# 		if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+	# 			user.email = data["email"] if user.email.blank?
+	# 		end
+	# 	end
+	# end
 
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-		user = User.where(:provider => auth.provider, :uid => auth.uid).first
-		unless user
-			user = User.create(name:auth.extra.raw_info.name,
-								provider:auth.provider,
-								uid:auth.uid,
-								email:auth.info.email,
-								password:Devise.friendly_token[0,20]
-								)
-	  	end
-	  	return user
+		find_for_oauth(auth, signed_in_resource)
+	end
+
+	def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+		find_for_oauth(auth, signed_in_resource)
+	end
+
+	def self.find_for_oauth(auth, signed_in_resource=nil)
+		# require "pry"; binding.pry
+
+		authentication = Authentication.find_by_provider_and_uid(auth.provider, auth.uid)
+		if authentication && authentication.user
+			authentication.user
+		else
+			if auth.info.email.blank?
+				email = ""
+			else
+				email = auth.info.email
+			end
+
+			user = User.create!(name: auth.info.name,
+			                    email: email,
+			                    password: Devise.friendly_token[0,20])
+			user.authentications.create!(:provider => auth.provider, :uid => auth.uid)
+			user.save
+			user
+		end
 	end
 
 end
