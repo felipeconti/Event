@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104163455) do
+ActiveRecord::Schema.define(version: 20131106202500) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(version: 20131104163455) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "name"
   end
 
