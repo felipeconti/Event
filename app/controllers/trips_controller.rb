@@ -28,6 +28,7 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
+        sync_new @trip
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render action: 'show', status: :created, location: @trip }
       else
@@ -40,8 +41,10 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
+
     respond_to do |format|
       if @trip.update(trip_params)
+        sync_update @trip
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
@@ -55,6 +58,9 @@ class TripsController < ApplicationController
   # DELETE /trips/1.json
   def destroy
     @trip.destroy
+
+    sync_destroy @trip
+
     respond_to do |format|
       format.html { redirect_to trips_url }
       format.json { head :no_content }

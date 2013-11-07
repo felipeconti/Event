@@ -11,24 +11,10 @@
   </thead>
 
   <tbody>
-    <% @trips.each do |trip| %>
-      <tr>
-      <td><%= link_to '',
-              trip,
-              :class=>"icon-search" %></td>
-        <td><%=trip.name%></td>
-        <td><%= trip.description %></td>
-        <td class="btn_actions">
-          <%= link_to t('edit', :default => t("helpers.links.edit")),
-                      edit_trip_path(trip), :class => 'btn btn-mini' %>
-          <%= link_to t('destroy', :default => t("helpers.links.destroy")),
-                      trip,
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t('sure'))) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+    <%# @trips.each do |trip| %>
+		<%= sync partial: 'trip_row', collection: @trips %>
+    <%# end %>
+	<%= sync_new partial: 'trip_row', resource: Trip.new, direction: :append %>
   </tbody>
 </table>
 
