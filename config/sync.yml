@@ -23,8 +23,8 @@ test:
    async: false
 
 production:
-   server: "http://example.com/faye"
-   adapter_javascript_url: "http://localhost:9292/faye/faye.js"
+   server: "http://trip.felipeconti.com.br:9292/faye"
+   adapter_javascript_url: "http://trip.felipeconti.com.br:9292/faye/faye.js"
    adapter: "Faye"
    auth_token: "d176c306c23892c3b822e4f71e2988361f6d0fea60e8e27bd665c6a2083f24c0"
    async: true
