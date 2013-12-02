@@ -52,6 +52,10 @@ group :development do
   gem "pry-meta"
 end
 
+group :production do
+  gem "pg"
+end
+
 gem "devise"
 gem "therubyracer", platforms: :ruby
 gem "omniauth"
@@ -70,3 +74,5 @@ gem "simple_form"
 gem 'faye'
 gem 'thin', require: false
 gem 'sync'
+
+gem 'unicorn'
