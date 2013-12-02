@@ -20,3 +20,4 @@ config/initializers/secret_token.rb
 .idea/*
 .env.*
 config/database.yml
+public/assets/*
