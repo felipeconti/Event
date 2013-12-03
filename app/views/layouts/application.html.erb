@@ -79,11 +79,30 @@
                     <li><%= link_to "Votes", "/"%></li>
                   </ul>
                 </div><!--/.well -->
+
+                <% if current_user.super_user %>
+
+                  <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                      <li class="nav-header">Users</li>
+                      <% @users.each do |user| %>
+                        <span class="label label-info"data-toggle="tooltip" title=<%= user.email %>> 
+                          <%= user.name %>
+                        </span>
+                      <% end %>
+                    </ul>
+                  </div><!--/.well -->
+
+                <% end %>
               </div><!--/span-->
 
             <% end %>
 
-            <div class="span10">
+            <% if user_signed_in? %>
+              <div class="span10">
+            <% else %>
+              <div class="span12">
+            <% end %>
       			<%= bootstrap_flash %>
       			<%= yield %>
             </div>
