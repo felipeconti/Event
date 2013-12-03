@@ -20,4 +20,6 @@
 
 <br>
 
-<%= link_to 'Nova Trip', new_trip_path %>
+<% if current_user.super_user %>
+  <%= link_to 'Nova Trip', new_trip_path %>
+<% end%>

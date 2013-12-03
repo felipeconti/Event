@@ -14,7 +14,12 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
-    @trip = Trip.new
+    if current_user.super_user
+      @trip = Trip.new
+    else
+      flash[:notice] = "Oops! You can not access this path."
+      redirect_to root_url
+    end
   end
 
   # GET /trips/1/edit
