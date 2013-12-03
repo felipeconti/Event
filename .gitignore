@@ -20,4 +20,5 @@ config/initializers/secret_token.rb
 .idea/*
 .env.*
 config/database.yml
+config/newrelic.yml
 public/assets/*
