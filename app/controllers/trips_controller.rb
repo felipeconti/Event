@@ -1,6 +1,8 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
+  before_action :valid_super_user, only: [:new, :edit, :destroy]
+
   # GET /trips
   # GET /trips.json
   def index
@@ -14,12 +16,7 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
-    if current_user.super_user
       @trip = Trip.new
-    else
-      flash[:notice] = "Oops! You can not access this path."
-      redirect_to root_url
-    end
   end
 
   # GET /trips/1/edit
@@ -46,7 +43,6 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
-
     respond_to do |format|
       if @trip.update(trip_params)
         sync_update @trip
@@ -76,6 +72,13 @@ class TripsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
       @trip = Trip.find(params[:id])
+    end
+
+    def valid_super_user
+      if not current_user.super_user
+        flash[:notice] = "Oops! You can not access this path."
+        redirect_to root_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

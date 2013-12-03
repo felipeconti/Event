@@ -6,7 +6,9 @@
       <th id="detail">Detalhes</th>
       <th>Name</th>
       <th>Description</th>
-      <th><%=t 'actions', :default => t("helpers.actions") %></th>
+      <% if current_user.super_user %>
+        <th><%=t 'actions', :default => t("helpers.actions") %></th>
+      <% end %>
     </tr>
   </thead>
 
