@@ -75,8 +75,8 @@
                 <div class="well sidebar-nav">
                   <ul class="nav nav-list">
                     <li class="nav-header">Menu</li>
-                    <li><%= link_to "Trips", "/trips"%></li>
-                    <li><%= link_to "Votes", "/"%></li>
+                    <li><%= link_to "Trips", trips_path %></li>
+                    <li><%= link_to "Votes", root_path %></li>
                   </ul>
                 </div><!--/.well -->
 
@@ -86,7 +86,7 @@
                     <ul class="nav nav-list">
                       <li class="nav-header">Users</li>
                       <% @users.each do |user| %>
-                        <span class="label label-info"data-toggle="tooltip" title=<%= user.email %>> 
+                        <span class="label label-info"data-toggle="tooltip" title=<%= user.email %>>
                           <%= user.name %>
                         </span>
                       <% end %>
