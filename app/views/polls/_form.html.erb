@@ -1,0 +1,25 @@
+<%= simple_form_for(@poll, html: {class: 'form-vertical' }) do |f| %>
+
+  <% if @poll.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
+
+      <ul>
+      <% @poll.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.input :description, label: t("description"), :autofocus => true %>
+    <%= f.input :complement , label: t("complement") %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('cancel', :default => t("helpers.links.cancel")), polls_path, :class => 'btn' %>
+  </div>
+
+<% end %>

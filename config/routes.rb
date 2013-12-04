@@ -1,4 +1,13 @@
 Sitio::Application.routes.draw do
+
+  resources :polls do
+    member {
+      post :like
+      post :dislike
+      post :get_liked
+    }
+  end
+
   resources :trips
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
@@ -45,7 +54,7 @@ Sitio::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
