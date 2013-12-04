@@ -13,5 +13,11 @@
 
     <%= f.input :name, label: "Nome", :autofocus => true %>
     <%= f.input :description , label: "Descrição" %>
-    <%= f.button :submit %>
+
+     <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('cancel', :default => t("helpers.links.cancel")),
+                  trips_path, :class => 'btn' %>
+    </div>
+
 <% end %>
