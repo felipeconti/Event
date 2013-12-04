@@ -28,6 +28,7 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       if @poll.save
+        sync_new @poll
         format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
         format.json { render action: 'show', status: :created, location: @poll }
       else
@@ -42,6 +43,7 @@ class PollsController < ApplicationController
   def update
     respond_to do |format|
       if @poll.update(poll_params)
+        sync_update @poll
         format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
         format.json { head :no_content }
       else
@@ -55,6 +57,9 @@ class PollsController < ApplicationController
   # DELETE /polls/1.json
   def destroy
     @poll.destroy
+
+    sync_destroy @poll
+
     respond_to do |format|
       format.html { redirect_to polls_url }
       format.json { head :no_content }
@@ -63,11 +68,13 @@ class PollsController < ApplicationController
 
   def like
     @poll.liked_by current_user
+    sync_update @poll
     redirect_to :back, notice: "Thank you for like!"
   end
 
   def dislike
     @poll.disliked_by current_user
+    sync_update @poll
     redirect_to :back, notice: "Thank you for dislike!"
   end
 
