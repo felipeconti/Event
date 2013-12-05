@@ -4,7 +4,6 @@ Sitio::Application.routes.draw do
     member {
       post :like
       post :dislike
-      post :get_liked
     }
   end
 

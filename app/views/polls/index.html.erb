@@ -2,16 +2,12 @@
 
 <h2>Polls</h2>
 
-<table class="table table-hover table-bordered table-striped">
+<table class="table table-hover table-bordered table-striped" id="table_poll">
   <thead>
     <tr>
       <th id="detail">Detalhes</th>
       <th><%=t("description")%></th>
-      <th><%=t("complement")%></th>
-      <th><%=t("qtd_like")%></th>
-      <th><%=t("qtd_dislike")%></th>
-      <th><%=t("like")%></th>
-      <th><%=t("dislike")%></th>
+      <th><%=t("vote")%></th>
       <% if current_user.super_user %>
         <th><%=t 'actions', :default => t("helpers.actions") %></th>
       <% end %>

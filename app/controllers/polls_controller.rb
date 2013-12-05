@@ -28,7 +28,7 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       if @poll.save
-        format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
+        format.html { redirect_to polls_url, notice: 'Poll was successfully created.' }
         format.json { render action: 'show', status: :created, location: @poll }
       else
         format.html { render action: 'new' }
@@ -69,10 +69,6 @@ class PollsController < ApplicationController
   def dislike
     @poll.disliked_by current_user
     redirect_to :back, notice: "Thank you for dislike!"
-  end
-
-  def get_liked
-    @poll.votes.up.by_type(current_user)
   end
 
   private

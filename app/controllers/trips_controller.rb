@@ -31,7 +31,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.save
         sync_new @trip
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to trips_url, notice: 'Trip was successfully created.' }
         format.json { render action: 'show', status: :created, location: @trip }
       else
         format.html { render action: 'new' }

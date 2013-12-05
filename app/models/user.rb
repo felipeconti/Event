@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
 	devise  :database_authenticatable, :registerable,
 			:recoverable, :rememberable, :trackable, :validatable,
-			:omniauthable, 
+			:omniauthable,
 	 		:omniauth_providers => [:facebook, :github]
 
 	has_many :authentications, :dependent => :delete_all
@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 	validates_presence_of :name
 	validates_format_of :email, with: /\A.+@.+\..{2,4}\z/
 	validates_uniqueness_of :email
+
+	acts_as_voter
 
 	# def self.new_with_session(params, session)
 	# 	super.tap do |user|
@@ -45,9 +47,9 @@ class User < ActiveRecord::Base
 			unless user
 				user = User.create!(name: name,
 				                    email: email,
-				                    password: Devise.friendly_token[0,20])	
+				                    password: Devise.friendly_token[0,20])
 			end
-			
+
 			user.authentications.create!(:provider => auth.provider, :uid => auth.uid)
 			user.save
 			user
