@@ -1,6 +1,8 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy, :like, :dislike]
 
+  before_action :valid_super_user, only: [:new, :edit, :destroy]
+
   # GET /polls
   # GET /polls.json
   def index
@@ -82,6 +84,13 @@ class PollsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
       @poll = Poll.find(params[:id])
+    end
+
+    def valid_super_user
+      if not current_user.super_user
+        flash[:notice] = "Oops! You can not access this path."
+        redirect_to root_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
