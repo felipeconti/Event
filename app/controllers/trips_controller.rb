@@ -77,7 +77,7 @@ class TripsController < ApplicationController
     def valid_super_user
       if not current_user.super_user
         flash[:notice] = "Oops! You can not access this path."
-        redirect_to root_url
+        redirect_to trips_url
       end
     end
 
