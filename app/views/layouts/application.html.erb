@@ -80,20 +80,17 @@
                   </ul>
                 </div><!--/.well -->
 
-                <% if current_user.super_user %>
+                <div class="well sidebar-nav">
+                  <ul class="nav nav-list">
+                    <li class="nav-header">Users</li>
+                    <% @users.each do |user| %>
+                      <span class="label label-info"data-toggle="tooltip" title=<%= user.email %>>
+                        <%= user.name %>
+                      </span>
+                    <% end %>
+                  </ul>
+                </div><!--/.well -->
 
-                  <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                      <li class="nav-header">Users</li>
-                      <% @users.each do |user| %>
-                        <span class="label label-info"data-toggle="tooltip" title=<%= user.email %>>
-                          <%= user.name %>
-                        </span>
-                      <% end %>
-                    </ul>
-                  </div><!--/.well -->
-
-                <% end %>
               </div><!--/span-->
 
             <% end %>
