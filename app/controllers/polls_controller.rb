@@ -71,13 +71,13 @@ class PollsController < ApplicationController
   def like
     @poll.liked_by current_user
     sync_update @poll
-    redirect_to :back, notice: "Thank you for like!"
+    redirect_to :back #, notice: "Thank you for like!"
   end
 
   def dislike
     @poll.disliked_by current_user
     sync_update @poll
-    redirect_to :back, notice: "Thank you for dislike!"
+    redirect_to :back #, notice: "Thank you for dislike!"
   end
 
   private
