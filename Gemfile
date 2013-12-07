@@ -63,7 +63,6 @@ gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-twitter"
 gem "omniauth-github"
-gem "pry-meta", group: :development
 gem "dotenv-rails"
 
 gem "therubyracer"
