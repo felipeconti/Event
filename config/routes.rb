@@ -11,7 +11,14 @@ Sitio::Application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
 
-  root :to => "trips#index"
+  authenticated :user do
+    root :to => "trips#index"
+  end
+  unauthenticated :user do
+    devise_scope :user do 
+      get "/" => "devise/sessions#new"
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
