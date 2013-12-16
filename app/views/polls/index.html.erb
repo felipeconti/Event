@@ -15,8 +15,8 @@
   </thead>
 
   <tbody>
-    <%= sync partial: 'poll_row', collection: @polls, refetch: true %>
-    <%= sync_new partial: 'poll_row', resource: Poll.new, direction: :append, refetch: true %>
+    <%= sync partial: 'poll_row', collection: @polls %>
+    <%= sync_new partial: 'poll_row', resource: Poll.new, direction: :append%>
   </tbody>
 </table>
 
