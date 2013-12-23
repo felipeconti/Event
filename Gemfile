@@ -46,11 +46,13 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :development do
+group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "pry-meta"
   gem 'pry-rails'
+  gem "rspec-rails"
+  gem 'capybara'
 end
 
 group :production do
