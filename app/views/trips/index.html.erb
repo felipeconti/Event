@@ -1,13 +1,13 @@
 <%- model_class = Trip -%>
 
-<h2>Trips</h2>
+<h2><%= t("trips") %></h2>
 
 <table class="table table-hover table-bordered table-striped">
   <thead>
     <tr>
       <th id="detail">Detalhes</th>
-      <th>Name</th>
-      <th>Description</th>
+      <th><%= t("name")%></th>
+      <th><%= t("description")%></th>
       <% if current_user.super_user %>
         <th><%=t 'actions', :default => t("helpers.actions") %></th>
       <% end %>
@@ -26,6 +26,6 @@
 
 <% if current_user.super_user %>
   <div class="add-master-button">
-    <%= link_to t('helpers.titles.new',:model => model_class.model_name.human), new_trip_path, class: 'btn btn-primary' %>
+    <%= link_to t('helpers.titles.new', :model => t("trip")), new_trip_path, class: 'btn btn-primary' %>
   </div>
 <% end%>

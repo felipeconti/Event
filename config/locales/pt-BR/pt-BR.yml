@@ -19,27 +19,26 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+pt-BR:
   menu: Menu
 
-  user: User
-  users: Users
+  user: Usuário
+  users: Usuários
 
-  event: Event
-  events: Events
+  event: Evento
+  events: Eventos
 
-  trips: Trips
-  polls: Polls
+  trips: Viagens
+  polls: Enquetes
 
-  trip: Trip
-  poll: Poll
+  trip: Viagem
+  poll: Enquete
 
-  logged_in_as: Logged in as
+  logged_in_as: Logado como
+  login: Entrar
+  logout: Sair
 
-  login: Login
-  logout: Logout
+  name: Nome
+  description: Descrição
 
-  name: Name
-  description: Description
-
-  vote: Vote
+  vote: Votos
