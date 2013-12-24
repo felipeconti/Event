@@ -4,7 +4,7 @@ worker_processes 4
 
 working_directory APP_PATH
 
-listen "/tmp/unicorn.trip.sock", :backlog => 64
+listen "/tmp/unicorn.event.sock", :backlog => 64
 #listen 8080, :tcp_nopush => true
 
 timeout 60
