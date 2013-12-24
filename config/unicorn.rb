@@ -1,4 +1,4 @@
-APP_PATH = "/var/www/Trip/"
+APP_PATH = "/var/www/Event/"
 
 worker_processes 4
 

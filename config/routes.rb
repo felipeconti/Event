@@ -1,4 +1,4 @@
-Sitio::Application.routes.draw do
+Event::Application.routes.draw do
 
   resources :polls do
     member {

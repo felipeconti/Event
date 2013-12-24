@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Sitio::Application.load_tasks
+Event::Application.load_tasks

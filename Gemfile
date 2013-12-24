@@ -82,3 +82,5 @@ gem 'sync'
 gem 'unicorn'
 
 gem "acts_as_votable", "~>0.8.0"
+
+# gem "rename"
