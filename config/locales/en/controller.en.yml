@@ -1,0 +1,4 @@
+pt-BR:
+
+  successfully_created: "%{model} was successfully created."
+  successfully_updated: "%{model} was successfully updated."

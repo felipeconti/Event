@@ -1,0 +1,5 @@
+pt-BR:
+
+  successfully_created: "%{model} foi criada com sucesso."
+  successfully_updated: "%{model} foi atualizada com sucesso."
+  oops_not_access: "Oops! You can not access this path."

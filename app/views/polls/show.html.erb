@@ -1,12 +1,12 @@
 <p>
-  <strong>Description:</strong>
+  <strong><%=t("description")%>:</strong>
   <%= @poll.description %>
 </p>
 
 <p>
-  <strong>Complement:</strong>
+  <strong><%=t("complement")%>:</strong>
   <%= @poll.complement %>
 </p>
 
-<%= link_to 'Edit', edit_poll_path(@poll) %> |
-<%= link_to 'Back', polls_path %>
+<%= link_to t('edit'), edit_poll_path(@poll) %> |
+<%= link_to t('back'), polls_path %>

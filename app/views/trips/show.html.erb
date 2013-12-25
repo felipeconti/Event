@@ -1,12 +1,12 @@
 <p>
-  <strong>Name:</strong>
+  <strong><%=t("name")%>:</strong>
   <%= @trip.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%=t("description")%>:</strong>
   <%= @trip.description %>
 </p>
 
-<%= link_to 'Editar', edit_trip_path(@trip) %> |
-<%= link_to 'Voltar', trips_path %>
+<%= link_to t('edit'), edit_trip_path(@trip) %> |
+<%= link_to t('back'), trips_path %>

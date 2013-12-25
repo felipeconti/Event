@@ -33,7 +33,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       if @poll.save
         # sync_new @poll
-        format.html { redirect_to polls_url, notice: 'Poll was successfully created.' }
+        format.html { redirect_to polls_url, notice: t("successfully_created", :model => t("models.poll")) }
         format.json { render action: 'show', status: :created, location: @poll }
       else
         format.html { render action: 'new' }
@@ -48,7 +48,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       if @poll.update(poll_params)
         # sync_update @poll
-        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
+        format.html { redirect_to @poll, notice: t("successfully_updated", :model => t("models.poll")) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -90,7 +90,7 @@ class PollsController < ApplicationController
 
     def valid_super_user
       if not current_user.super_user
-        flash[:notice] = "Oops! You can not access this path."
+        flash[:notice] = t("oops_not_access")
         redirect_to polls_url
       end
     end

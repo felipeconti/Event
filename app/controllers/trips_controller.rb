@@ -31,7 +31,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.save
         sync_new @trip
-        format.html { redirect_to trips_url, notice: 'Trip was successfully created.' }
+        format.html { redirect_to trips_url, notice: t("successfully_created", :model => t("models.trip")) }
         format.json { render action: 'show', status: :created, location: @trip }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.update(trip_params)
         sync_update @trip
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        format.html { redirect_to @trip, notice: t("successfully_updated", :model => t("models.trip")) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,7 +76,7 @@ class TripsController < ApplicationController
 
     def valid_super_user
       if not current_user.super_user
-        flash[:notice] = "Oops! You can not access this path."
+        flash[:notice] = t("oops_not_access")
         redirect_to trips_url
       end
     end
