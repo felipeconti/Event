@@ -14,8 +14,8 @@ feature "Login" do
 
     visit root_path
 
-    fill_in "Email", with: @eu.email
-    fill_in "Password", with: @eu.password
+    fill_in I18n.t("email"), with: @eu.email
+    fill_in I18n.t("password"), with: @eu.password
 
     click_button "Sign in"
 

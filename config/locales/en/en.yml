@@ -20,7 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  models:
+    trip: Trip
+    poll: Poll
+    trips: Trips
+    polls: Polls
+
   menu: Menu
+
+  email: Email
+  password: Password
 
   user: User
   users: Users
