@@ -1,8 +1,6 @@
 <tr>
-    <td><%= link_to '',
-        trip,
-        :class=>"icon-search" %></td>
-    <td><%=trip.name%></td>
+    <td><%= link_to '', trip, :class=>"icon-search" %></td>
+    <td><%= link_to trip.name, trip %></td>
     <td><%= trip.description %></td>
     <% if current_user.super_user %>
         <td class="btn_actions">

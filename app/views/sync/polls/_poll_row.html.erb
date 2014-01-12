@@ -1,6 +1,5 @@
 <tr>
-    <td><%= link_to '', trip_poll_path(@trip, poll), :class=>"icon-search" %></td>
-    <td><%= poll.description%></td>
+    <td><%= link_to poll.description, trip_poll_path(@trip, poll)%></td>
     <td>
 
         <% if current_user.voted_up_for? poll %>
