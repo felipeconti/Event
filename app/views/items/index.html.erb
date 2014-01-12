@@ -1,0 +1,32 @@
+<%- model_class = Item -%>
+
+<h2><%= t("models.items") %></h2>
+
+<table class="table table-hover table-bordered table-striped" id="table_item">
+
+  <thead>
+    <tr>
+      <th id="detail">Detalhes</th>
+      <th><%= t("name")%></th>
+      <th><%= t("description")%></th>
+      <th><%= t("amount")%></th>
+      <th><%= t("value")%></th>
+      <% if current_user.super_user %>
+        <th><%=t 'actions', :default => t("helpers.actions") %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= sync partial: 'item_row', collection: @trip.items %>
+    <%= sync_new partial: 'item_row', resource: Item.new, direction: :append%>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user.super_user %>
+  <div class="add-master-button">
+    <%= link_to t('helpers.titles.new',:model => t("models.item")), new_trip_item_path(@trip), class: 'btn btn-primary' %>
+  </div>
+<% end%>

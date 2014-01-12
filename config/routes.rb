@@ -1,12 +1,16 @@
 Event::Application.routes.draw do
 
   resources :trips, path: '/'+I18n.t("models.trips").downcase do
+
     resources :polls, path: '/'+I18n.t("models.polls").downcase do
       member {
         post :like
         post :dislike
       }
     end
+
+    resources :items, path: '/'+I18n.t("models.items").downcase
+
   end
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}

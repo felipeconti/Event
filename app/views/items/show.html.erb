@@ -1,0 +1,22 @@
+<p>
+  <strong><%=t("name")%>:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong><%=t("description")%>:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong><%=t("amount")%>:</strong>
+  <%= @item.amount %>
+</p>
+
+<p>
+  <strong><%=t("value")%>:</strong>
+  <%= @item.value %>
+</p>
+
+<%= link_to t('edit'), edit_trip_item_path(@trip, @item) %> |
+<%= link_to t('back'), trip_items_path %>

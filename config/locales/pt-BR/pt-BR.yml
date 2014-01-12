@@ -23,8 +23,12 @@ pt-BR:
   models:
     trip: Viagem
     poll: Enquete
+
     trips: Viagens
     polls: Enquetes
+
+    item: Item
+    items: Itens
 
   menu: Menu
 
@@ -44,6 +48,8 @@ pt-BR:
   name: Nome
   description: Descrição
   complement: Complemento
+  amount: Quantidade
+  value: Valor
 
   vote: Votos
 

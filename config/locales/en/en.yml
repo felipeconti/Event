@@ -23,8 +23,12 @@ en:
   models:
     trip: Trip
     poll: Poll
+
     trips: Trips
     polls: Polls
+
+    item: Item
+    items: Items
 
   menu: Menu
 
@@ -50,7 +54,9 @@ en:
 
   name: Name
   description: Description
-  complement: Complemento
+  complement: Complement
+  amount: Amount
+  value: Value
 
   vote: Vote
 

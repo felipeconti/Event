@@ -3,6 +3,7 @@
     <ul class="nav nav-list">
       <li class="nav-header"><%=t("menu")%></li>
       <li><%= link_to t("models.polls")+" ("+unvoted_polls_user_count+")", trip_polls_path(@trip) %> </li>
+      <li><%= link_to t("models.items"), trip_items_path(@trip) %> </li>
     </ul>
   </div><!--/.well -->
 
