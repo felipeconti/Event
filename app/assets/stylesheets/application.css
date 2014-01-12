@@ -14,7 +14,7 @@
 
 html, body{
     height: 100%;
-    /*background: url('/assets/bg.png') repeat;*/
+    background: url('/assets/bg.png') repeat;
 }
 
 /*body > #wrap {
@@ -28,7 +28,7 @@ html, body{
 }
 
 .container .credits {
-    margin: 5px 0;
+    margin: 2px 0;
 }
 
 .credits {
@@ -42,7 +42,7 @@ html, body{
 
 #main {
 	overflow:auto;
-	padding-bottom: 30px; /* deve ter a mesma altura do rodapé */
+	padding-bottom: 25px; /* deve ter a mesma altura do rodapé */
 }
 
 #footer .container{
@@ -53,9 +53,9 @@ html, body{
 	/*min-height: 100%;*/
 	/*width: auto !important;*/
 	width: 100%;
-	margin-top: -30px;
+	margin-top: -25px;
 	bottom:0;
-	clear:both
+	clear:both;
 }
 
 .table {

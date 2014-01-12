@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <%= sync partial: 'poll_row', collection: @polls %>
+    <%= sync partial: 'poll_row', collection: @trip.polls %>
     <%= sync_new partial: 'poll_row', resource: Poll.new, direction: :append%>
   </tbody>
 </table>
@@ -24,6 +24,6 @@
 
 <% if current_user.super_user %>
   <div class="add-master-button">
-    <%= link_to t('helpers.titles.new',:model => t("models.poll")), new_poll_path, class: 'btn btn-primary' %>
+    <%= link_to t('helpers.titles.new',:model => t("models.poll")), new_trip_poll_path(@trip), class: 'btn btn-primary' %>
   </div>
 <% end%>

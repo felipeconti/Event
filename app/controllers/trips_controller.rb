@@ -75,7 +75,7 @@ class TripsController < ApplicationController
     end
 
     def valid_super_user
-      if not current_user.super_user
+      unless current_user.super_user
         flash[:notice] = t("oops_not_access")
         redirect_to trips_url
       end

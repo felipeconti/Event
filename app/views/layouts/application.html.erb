@@ -14,25 +14,25 @@
 
 	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+  <!-- For third-generation iPad with high-resolution Retina display: -->
+  <!-- Size should be 144 x 144 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
 
-    <!-- For iPhone with high-resolution Retina display: -->
-    <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+  <!-- For iPhone with high-resolution Retina display: -->
+  <!-- Size should be 114 x 114 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
 
-    <!-- For first- and second-generation iPad: -->
-    <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+  <!-- For first- and second-generation iPad: -->
+  <!-- Size should be 72 x 72 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
 
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <!-- Size should be 57 x 57 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
-    <!-- For all other devices -->
-    <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
+  <!-- For all other devices -->
+  <!-- Size should be 32 x 32 pixels -->
+  <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
 
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag Sync.adapter_javascript_url %>
@@ -48,7 +48,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/"><%=t "events" %></a>
+
+             <a class="brand" href="/"><%=t "events" %></a>
+            <%if @trip != nil and not @trip.new_record? %>
+              <ul class="nav navbar-nav">
+                <li class="active"> 
+                  <a href=<%= trip_path(@trip) %> > <%= @trip.name %> </a> 
+                </li>
+              </ul>
+            <%end%>
+
             <div class="container-fluid nav-collapse">
         			<p class="navbar-text pull-right">
         				<% if user_signed_in? %>
@@ -68,38 +77,12 @@
         <div class="container-fluid">
 
           <div class="row-fluid">
-
-            <% if user_signed_in? %>
-
-              <div class="span2">
-                <div class="well sidebar-nav">
-                  <ul class="nav nav-list">
-                    <li class="nav-header"><%=t("menu")%></li>
-                    <li><%= link_to t("models.trips"), trips_path %></li>
-                    <li><%= link_to t("models.polls"), polls_path %></li>
-                  </ul>
-                </div><!--/.well -->
-
-                <div class="well sidebar-nav">
-                  <ul class="nav nav-list">
-                    <li class="nav-header"><%=t("users")%></li>
-                    <% @users.each do |user| %>
-                      <span class="label label-info"data-toggle="tooltip" title=<%= user.email %>>
-                        <%= user.name %>
-                      </span>
-                    <% end %>
-                  </ul>
-                </div><!--/.well -->
-
-              </div><!--/span-->
-
-            <% end %>
-
-            <% if user_signed_in? %>
+            <%if @trip != nil and not @trip.new_record? %>
+              <%= render 'shared/side_bar' %>
               <div class="span10">
-            <% else %>
+            <%else%>
               <div class="span12">
-            <% end %>
+            <%end%>
       			<%= bootstrap_flash %>
       			<%= yield %>
             </div>

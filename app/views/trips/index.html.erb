@@ -16,9 +16,9 @@
 
   <tbody>
     <%# @trips.each do |trip| %>
-		<%= sync partial: 'trip_row', collection: @trips %>
+        <%= sync partial: 'trip_row', collection: @trips %>
     <%# end %>
-	<%= sync_new partial: 'trip_row', resource: Trip.new, direction: :append %>
+    <%= sync_new partial: 'trip_row', resource: Trip.new, direction: :append %>
   </tbody>
 </table>
 

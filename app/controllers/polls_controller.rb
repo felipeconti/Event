@@ -1,4 +1,7 @@
 class PollsController < ApplicationController
+
+  before_action :find_trip
+
   before_action :set_poll, only: [:show, :edit, :update, :destroy, :like, :dislike]
 
   before_action :valid_super_user, only: [:new, :edit, :destroy]
@@ -8,7 +11,7 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all
+    @polls = @trip.polls.all
   end
 
   # GET /polls/1
@@ -18,7 +21,7 @@ class PollsController < ApplicationController
 
   # GET /polls/new
   def new
-    @poll = Poll.new
+    @poll = @trip.polls.new
   end
 
   # GET /polls/1/edit
@@ -28,12 +31,12 @@ class PollsController < ApplicationController
   # POST /polls
   # POST /polls.json
   def create
-    @poll = Poll.new(poll_params)
+    @poll = @trip.polls.new(poll_params)
 
     respond_to do |format|
       if @poll.save
         # sync_new @poll
-        format.html { redirect_to polls_url, notice: t("successfully_created", :model => t("models.poll")) }
+        format.html { redirect_to trip_polls_url, notice: t("successfully_created", :model => t("models.poll")) }
         format.json { render action: 'show', status: :created, location: @poll }
       else
         format.html { render action: 'new' }
@@ -48,7 +51,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       if @poll.update(poll_params)
         # sync_update @poll
-        format.html { redirect_to @poll, notice: t("successfully_updated", :model => t("models.poll")) }
+        format.html { redirect_to trip_polls_url, notice: t("successfully_updated", :model => t("models.poll")) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,7 +68,7 @@ class PollsController < ApplicationController
     # sync_destroy @poll
 
     respond_to do |format|
-      format.html { redirect_to polls_url }
+      format.html { redirect_to trip_polls_url }
       format.json { head :no_content }
     end
   end
@@ -83,15 +86,20 @@ class PollsController < ApplicationController
   end
 
   private
+
+    def find_trip
+      @trip = Trip.find(params[:trip_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
-      @poll = Poll.find(params[:id])
+      @poll = @trip.polls.find(params[:id])
     end
 
     def valid_super_user
-      if not current_user.super_user
+      unless current_user.super_user
         flash[:notice] = t("oops_not_access")
-        redirect_to polls_url
+        redirect_to trip_poll_url
       end
     end
 
