@@ -15,7 +15,7 @@
     <b><%= comment.user.name %></b>: <%= h(comment.to_s).gsub("\n", "<br/>").html_safe %>
 
     <div class="pull-right">
-        <%= comment.created_at.strftime('%H:%M:%S %d/%m/%Y') %>
+        <%= comment.created_at.strftime('%H:%M:%S %d/%m/%y') %>
     </div>
 
   </div>
