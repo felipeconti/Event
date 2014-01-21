@@ -10,7 +10,9 @@
       <%= @trip.description %>
     </p>
 
-    <%= link_to t('edit'), edit_trip_path(@trip) %>
+    <% if current_user.super_user %>
+        <%= link_to t('edit'), edit_trip_path(@trip) %>
+    <% end %>
 
     <br/>
     <br/>
