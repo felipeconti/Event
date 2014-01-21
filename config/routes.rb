@@ -1,6 +1,6 @@
-Event::Application.routes.draw do
+EventApp::Application.routes.draw do
 
-  resources :trips, path: '/'+I18n.t("models.trips").downcase do
+  resources :events, path: '/'+I18n.t("models.events").downcase do
 
     resources :polls, path: '/'+I18n.t("models.polls").downcase do
       member {
@@ -17,7 +17,7 @@ Event::Application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
 
   authenticated :user do
-    root :to => "trips#index"
+    root :to => "events#index"
   end
   unauthenticated :user do
     devise_scope :user do 

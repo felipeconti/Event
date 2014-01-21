@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12">
-    <%= simple_form_for [@trip, @comment || @trip.comments.new] do |f| %>
+    <%= simple_form_for [@event, @comment || @event.comments.new] do |f| %>
         <% if f.object.errors.any? %>
             <% f.object.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>

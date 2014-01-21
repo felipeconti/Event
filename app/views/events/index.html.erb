@@ -1,0 +1,31 @@
+<%- model_class = Event -%>
+
+<h2><%= t("models.events") %></h2>
+
+<table class="table table-hover table-bordered table-sevented">
+  <thead>
+    <tr>
+      <th id="detail">Detalhes</th>
+      <th><%= t("name")%></th>
+      <th><%= t("description")%></th>
+      <% if current_user.super_user %>
+        <th><%=t 'actions', :default => t("helpers.actions") %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @events.each do |event| %>
+        <%= sync partial: 'event_row', collection: @events %>
+    <%# end %>
+    <%= sync_new partial: 'event_row', resource: Event.new, direction: :append %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user.super_user %>
+  <div class="add-master-button">
+    <%= link_to t('helpers.titles.new', :model => t("models.event")), new_event_path, class: 'btn btn-primary' %>
+  </div>
+<% end%>

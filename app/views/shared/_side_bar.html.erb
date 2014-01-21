@@ -2,8 +2,8 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
       <li class="nav-header"><%=t("menu")%></li>
-      <li><%= link_to t("models.polls")+" ("+unvoted_polls_user_count+")", trip_polls_path(@trip) %> </li>
-      <li><%= link_to t("models.items"), trip_items_path(@trip) %> </li>
+      <li><%= link_to t("models.polls")+" ("+unvoted_polls_user_count+")", event_polls_path(@event) %> </li>
+      <li><%= link_to t("models.items"), event_items_path(@event) %> </li>
     </ul>
   </div><!--/.well -->
 

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :find_trip
+  before_action :find_event
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = @trip.items.all
+    @items = @event.items.all
   end
 
   # GET /items/1
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = @trip.items.new
+    @item = @event.items.new
   end
 
   # GET /items/1/edit
@@ -31,12 +31,12 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = @trip.items.new(item_params)
+    @item = @event.items.new(item_params)
 
     respond_to do |format|
       if @item.save
         # sync_new @item
-        format.html { redirect_to trip_items_url, notice: t("successfully_created", :model => t("models.item")) }
+        format.html { redirect_to event_items_url, notice: t("successfully_created", :model => t("models.item")) }
         format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }
@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         # sync_update @item
-        format.html { redirect_to trip_items_url, notice: t("successfully_updated", :model => t("models.item")) }
+        format.html { redirect_to event_items_url, notice: t("successfully_updated", :model => t("models.item")) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -68,26 +68,26 @@ class ItemsController < ApplicationController
     # sync_destroy @item
 
     respond_to do |format|
-      format.html { redirect_to trip_items_url }
+      format.html { redirect_to event_items_url }
       format.json { head :no_content }
     end
   end
 
   private
 
-    def find_trip
-      @trip = Trip.find(params[:trip_id])
+    def find_event
+      @event = Event.find(params[:event_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = @trip.items.find(params[:id])
+      @item = @event.items.find(params[:id])
     end
 
     def valid_super_user
       unless current_user.super_user
         flash[:notice] = t("oops_not_access")
-        redirect_to trip_item_url
+        redirect_to event_item_url
       end
     end
 

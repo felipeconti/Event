@@ -1,5 +1,5 @@
 class Poll < ActiveRecord::Base
-  belongs_to :trip
+  belongs_to :event
   acts_as_votable
   sync :all
 end

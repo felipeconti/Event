@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-class Sync.TripRow extends Sync.View
+class Sync.EventRow extends Sync.View
 
   beforeInsert: ($el) ->
     $el.hide()

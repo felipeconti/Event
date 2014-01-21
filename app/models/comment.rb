@@ -1,10 +1,10 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
-  belongs_to :trip, counter_cache: true
+  belongs_to :event, counter_cache: true
 
   validates_presence_of :message
 
-  sync :all, scope: :trip
+  sync :all, scope: :event
 
   scope :ordered, -> { order("created_at ASC") }
   scope :recently_updated, -> { order("updated_at DESC")}

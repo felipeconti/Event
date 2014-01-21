@@ -1,5 +1,5 @@
 <tr>
-    <td><%= link_to '', trip_item_path(@trip, item), :class=>"icon-search" %></td>
+    <td><%= link_to '', event_item_path(@event, item), :class=>"icon-search" %></td>
     <td><%= item.name %></td>
     <td><%= item.description %></td>
     <td><%= item.amount %></td>
@@ -7,9 +7,9 @@
     
     <% if current_user.super_user %>
         <td class="btn_actions">
-        <%= link_to t('edit', :default => t("helpers.links.edit")), edit_trip_item_path(@trip, item), :class => 'btn btn-mini' %>
+        <%= link_to t('edit', :default => t("helpers.links.edit")), edit_event_item_path(@event, item), :class => 'btn btn-mini' %>
         <%= link_to t('destroy', :default => t("helpers.links.destroy")),
-                    trip_item_path(@trip, item),
+                    event_item_path(@event, item),
                     :method => :delete,
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t('sure'))) },
                     :class => 'btn btn-mini btn-danger' %>

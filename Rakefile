@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Event::Application.load_tasks
+EventApp::Application.load_tasks

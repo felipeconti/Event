@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119170949) do
+ActiveRecord::Schema.define(version: 20140121203843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140119170949) do
   end
 
   create_table "comments", force: true do |t|
-    t.integer  "trip_id"
+    t.integer  "event_id"
     t.integer  "user_id"
     t.string   "title"
     t.text     "message"
@@ -33,15 +33,23 @@ ActiveRecord::Schema.define(version: 20140119170949) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["trip_id"], name: "index_comments_on_trip_id", using: :btree
+  add_index "comments", ["event_id"], name: "index_comments_on_event_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "comments_count", default: 0, null: false
+  end
 
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "amount"
     t.float    "value"
-    t.integer  "trip_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,15 +59,7 @@ ActiveRecord::Schema.define(version: 20140119170949) do
     t.text     "complement"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "trip_id"
-  end
-
-  create_table "trips", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "comments_count", default: 0, null: false
+    t.integer  "event_id"
   end
 
   create_table "users", force: true do |t|

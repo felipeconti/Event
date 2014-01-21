@@ -1,4 +1,4 @@
-<%= simple_form_for([@trip, @poll], html: {class: 'form-vertical' }) do |f| %>
+<%= simple_form_for([@event, @poll], html: {class: 'form-vertical' }) do |f| %>
 
   <% if @poll.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +19,7 @@
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('cancel', :default => t("helpers.links.cancel")), trip_polls_path(@trip), :class => 'btn' %>
+    <%= link_to t('cancel', :default => t("helpers.links.cancel")), event_polls_path(@event), :class => 'btn' %>
   </div>
 
 <% end %>

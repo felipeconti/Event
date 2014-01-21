@@ -50,10 +50,10 @@
             </a>
 
              <a class="brand" href="/"><%=t "events" %></a>
-            <%if @trip != nil and not @trip.new_record? %>
+            <%if @event != nil and not @event.new_record? %>
               <ul class="nav navbar-nav">
                 <li class="active"> 
-                  <a href=<%= trip_path(@trip) %> > <%= @trip.name %> </a> 
+                  <a href=<%= event_path(@event) %> > <%= @event.name %> </a>
                 </li>
               </ul>
             <%end%>
@@ -77,7 +77,7 @@
         <div class="container-fluid">
 
           <div class="row-fluid">
-            <%if @trip != nil and not @trip.new_record? %>
+            <%if @event != nil and not @event.new_record? %>
               <%= render 'shared/side_bar' %>
               <div class="span10">
             <%else%>

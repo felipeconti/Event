@@ -1,0 +1,31 @@
+<div class="span8">
+
+    <p>
+      <strong><%=t("name")%>:</strong>
+      <%= @event.name %>
+    </p>
+
+    <p>
+      <strong><%=t("description")%>:</strong>
+      <%= @event.description %>
+    </p>
+
+    <% if current_user.super_user %>
+        <%= link_to t('edit'), edit_event_path(@event) %>
+    <% end %>
+
+    <br/>
+    <br/>
+
+    <h2><%= t("models.comments")%>: </h2>
+
+    <%= render partial: 'event_comment_form', resource:  @event %>
+
+    <%= sync_new partial: 'event_comment', resource: Comment.new, scope: @event, refetch: true %>
+    <% @event.comments.order('created_at DESC').each do |comment| %>
+      <%= sync partial: 'event_comment', resource: comment, refetch: true %>
+    <% end %>
+
+    <br/>
+
+</div>

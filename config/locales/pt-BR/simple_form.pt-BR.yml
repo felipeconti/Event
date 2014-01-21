@@ -16,7 +16,7 @@ pt-BR:
        defaults:
          password: Senha
          description: Descrição
-       trip:
+       event:
          name: Nome
        poll:
          complement: Complemento

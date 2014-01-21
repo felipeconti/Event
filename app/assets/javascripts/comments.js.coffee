@@ -1,4 +1,4 @@
-class Sync.TripComment extends Sync.View
+class Sync.EventsComment extends Sync.View
 
   beforeInsert: ($el) ->
     $el.hide()
