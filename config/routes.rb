@@ -10,6 +10,7 @@ Event::Application.routes.draw do
     end
 
     resources :items, path: '/'+I18n.t("models.items").downcase
+    resources :comments, path: '/'+I18n.t("models.comments").downcase
 
   end
 

@@ -30,6 +30,9 @@ en:
     item: Item
     items: Items
 
+    comment: Comment
+    comments: Comments
+
   menu: Menu
 
   email: Email
