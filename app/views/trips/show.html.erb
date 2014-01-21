@@ -19,7 +19,7 @@
 
     <h2><%= t("models.comments")%>: </h2>
 
-    <%= render partial: '/sync/trips/trip_comment_form', resource:  @trip %>
+    <%= render partial: 'trip_comment_form', resource:  @trip %>
 
     <%= sync_new partial: 'trip_comment', resource: Comment.new, scope: @trip, refetch: true %>
     <% @trip.comments.order('created_at DESC').each do |comment| %>
