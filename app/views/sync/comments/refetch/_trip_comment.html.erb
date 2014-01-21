@@ -1,5 +1,5 @@
   <div class="media-body">
-    <% if comment.user == current_user %>
+    <% if comment.user == current_user or current_user.super_user %>
         <%= link_to edit_trip_comment_path(@trip, comment) do %>
             <i class="icon-edit"></i>
         <% end %>
