@@ -33,6 +33,9 @@ en:
     comment: Comment
     comments: Comments
 
+    notification: Notification
+    notifications: Notifications
+
   menu: Menu
 
   email: Email
@@ -67,6 +70,12 @@ en:
   back: Back
 
   participants: Participants
+
+  owner: Owner
+
+  req_notification: "The User %{user_name} would like to attend the event %{event_name}"
+  req_sended: "Request sent to the owner of the event: %{event_name}"
+  req_error: "Error sending request"
 
   date:
     abbr_day_names:

@@ -33,6 +33,9 @@ pt-BR:
     comment: Comentário
     comments: Comentários
 
+    notification: Notificação
+    notifications: Notificações
+
   menu: Menu
 
   email: Email
@@ -60,6 +63,12 @@ pt-BR:
   back: Voltar
 
   participants: Participantes
+
+  owner: Proprietário
+
+  req_notification: "O usuario %{user_name} gostaria de participar do evento %{event_name}"
+  req_sended: "Solicitação enviada ao proprietário do evento: %{event_name}"
+  req_error: "Erro ao enviar solicitação"
 
   date:
     abbr_day_names:

@@ -1,6 +1,9 @@
 EventApp::Application.routes.draw do
 
   resources :events, path: '/'+I18n.t("models.events").downcase do
+    member {
+      get :request_participation
+    }
 
     resources :polls, path: '/'+I18n.t("models.polls").downcase do
       member {

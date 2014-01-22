@@ -61,6 +61,8 @@
             <div class="container-fluid nav-collapse">
         			<p class="navbar-text pull-right">
         				<% if user_signed_in? %>
+                  <strong><%= t("models.notifications") %></strong> <%= countNotifications %>
+                  <strong>|</strong>
         					<%=t("logged_in_as")%> <strong><%= current_user.name %></strong>.
         					<%= link_to t("logout"), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         				<% else %>

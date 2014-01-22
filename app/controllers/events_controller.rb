@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :request_participation]
 
   before_action :valid_super_user, only: [:new, :edit, :destroy]
 
@@ -16,7 +16,7 @@ class EventsController < ApplicationController
 
     unless current_user.super_user
       unless @users.include?(current_user)
-        flash[:notice] = t("oops_not_access")
+        flash[:warning] = t("oops_not_access")
         redirect_to root_path
       end
     end
@@ -37,6 +37,9 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.owner_id = current_user.id
+    
+    update_users
 
     respond_to do |format|
       if @event.save
@@ -55,7 +58,7 @@ class EventsController < ApplicationController
   def update
     #require "pry"; binding.pry
 
-    @event.users = User.find(params["users_ids"] || [])
+    update_users
 
     respond_to do |format|
       if @event.update(event_params)
@@ -82,7 +85,35 @@ class EventsController < ApplicationController
     end
   end
 
+  def request_participation
+    @text = t("req_notification", user_name: current_user.name, event_name: @event.name)
+    #require "pry"; binding.pry
+
+    if Notification.where("user_id = #{@event.owner_id} and description = '#{@text}'").count == 0
+      @notification = Notification.new
+  
+      @notification.user = User.find(@event.owner_id || 0)
+      @notification.description = @text
+      @notification.viewed = false
+      @Ok = @notification.save
+    else
+      @Ok = true
+    end
+
+    if @Ok
+      flash[:notice] = t("req_sended", event_name: @event.name)
+    else
+      flash[:notice] = t("req_error")
+    end
+    redirect_to root_path
+  end
+  
   private
+  
+    def update_users
+      @event.users = User.find(params["users_ids"] || [])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -90,7 +121,7 @@ class EventsController < ApplicationController
 
     def valid_super_user
       unless current_user.super_user
-        flash[:notice] = t("oops_not_access")
+        flash[:error] = t("oops_not_access")
         redirect_to events_url
       end
     end

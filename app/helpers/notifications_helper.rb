@@ -1,4 +1,4 @@
-module EventsHelper
+module NotificationsHelper
 
 	def unvoted_polls_user_count
     @count = 0
@@ -10,9 +10,8 @@ module EventsHelper
     @count.to_s
 	end
 
-  def member_of?(event, user)
-    #require "pry"; binding.pry
-    event.users.include?(user)
+  def countNotifications
+    Notification.where("user_id = #{current_user.id} and not viewed ").count
   end
   
 end

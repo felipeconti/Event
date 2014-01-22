@@ -1,7 +1,11 @@
 <tr>
-    <td><%= link_to '', event, :class=>"icon-search" %></td>
-    <td><%= link_to event.name, event %></td>
-    <td><%= event.description %></td>
+    <td><%= link_to '  ' + event.name, event, :class=>"icon-search" %></td>
+    <% if member_of?(event, current_user) %>
+      <th>Participando</th>
+    <% else %>
+      <th><%= link_to 'Solicitar participação!', request_participation_event_path(event) %>
+      </th>
+    <% end %>
     <% if current_user.super_user %>
         <td class="btn_actions">
         <%= link_to t('edit', :default => t("helpers.links.edit")),

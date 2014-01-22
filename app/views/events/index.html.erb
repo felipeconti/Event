@@ -5,9 +5,8 @@
 <table class="table table-hover table-bordered table-sevented">
   <thead>
     <tr>
-      <th id="detail">Detalhes</th>
       <th><%= t("name")%></th>
-      <th><%= t("description")%></th>
+      <th><%= t("Participação")%></th>
       <% if current_user.super_user %>
         <th><%=t 'actions', :default => t("helpers.actions") %></th>
       <% end %>

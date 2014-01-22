@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 	 		:omniauth_providers => [:facebook, :github]
 
 	has_many :authentications, :dependent => :delete_all
-
+  has_many :notifications, :dependent => :delete_all
+  
   has_and_belongs_to_many :events
   before_destroy {|user| user.events.clear}
 
