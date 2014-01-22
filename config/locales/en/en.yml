@@ -73,6 +73,10 @@ en:
 
   owner: Owner
 
+  participation: Participation
+  participating: Participating
+  request_participation: "Request Participation"
+
   req_notification: "The User %{user_name} would like to attend the event %{event_name}"
   req_sended: "Request sent to the owner of the event: %{event_name}"
   req_error: "Error sending request"

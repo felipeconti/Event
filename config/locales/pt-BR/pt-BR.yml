@@ -66,6 +66,10 @@ pt-BR:
 
   owner: Proprietário
 
+  participation: "Participação"
+  participating: Participando
+  request_participation: "Solicitar participação"
+
   req_notification: "O usuario %{user_name} gostaria de participar do evento %{event_name}"
   req_sended: "Solicitação enviada ao proprietário do evento: %{event_name}"
   req_error: "Erro ao enviar solicitação"
