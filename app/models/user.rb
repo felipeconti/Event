@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
 	has_many :authentications, :dependent => :delete_all
 
+  has_and_belongs_to_many :events
+  before_destroy {|user| user.events.clear}
+
 	validates_presence_of :name
 	validates_format_of :email, with: /\A.+@.+\..{2,4}\z/
 	validates_uniqueness_of :email

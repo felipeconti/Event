@@ -1,22 +1,32 @@
 <%= simple_form_for(@event, html: {class: 'form-vertical' }) do |f|%>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+    <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
 
     <%= f.input :name, :autofocus => true %>
     <%= f.input :description %>
 
-     <div class="form-actions">
-      <%= f.button :submit, :class => 'btn-primary' %>
-      <%= link_to t('cancel', :default => t("helpers.links.cancel")),
+    <h2>
+      Escolha os participantes deste evento:
+    </h2>
+    <% @users.each do |user| %>
+        <div>
+          <%= check_box_tag "users_ids[]", user.id, @event.users.include?(user) %>
+          <%= user.name%>
+        </div>
+    <% end %>
+
+    <div class="form-actions">
+        <%= f.button :submit, :class => 'btn-primary' %>
+        <%= link_to t('cancel', :default => t("helpers.links.cancel")),
                   :back, :class => 'btn' %>
     </div>
 

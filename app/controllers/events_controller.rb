@@ -12,15 +12,25 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @users = @event.users
+
+    unless current_user.super_user
+      unless @users.include?(current_user)
+        flash[:notice] = t("oops_not_access")
+        redirect_to root_path
+      end
+    end
   end
 
   # GET /events/new
   def new
-      @event = Event.new
+    @users = User.all
+    @event = Event.new
   end
 
   # GET /events/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /events
@@ -43,6 +53,10 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    #require "pry"; binding.pry
+
+    @event.users = User.find(params["users_ids"] || [])
+
     respond_to do |format|
       if @event.update(event_params)
         sync_update @event
