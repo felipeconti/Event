@@ -21,6 +21,7 @@ config/initializers/secret_token.rb
 .env.*
 config/database.yml
 config/newrelic.yml
+config/sync.yml
 public/assets/*
 
 Gemfile.lock
