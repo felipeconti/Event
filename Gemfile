@@ -62,14 +62,12 @@ group :production do
 end
 
 gem "devise"
-gem "therubyracer", platforms: :ruby
 gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-twitter"
 gem "omniauth-github"
 gem "dotenv-rails"
 
-gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
