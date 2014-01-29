@@ -50,7 +50,7 @@
             </a>
 
              <a class="brand" href="/"><%=t "events" %></a>
-            <%if @event != nil and not @event.new_record? %>
+            <%if @event and not @event.new_record? %>
               <ul class="nav navbar-nav">
                 <li class="active"> 
                   <a href=<%= event_path(@event) %> > <%= @event.name %> </a>
