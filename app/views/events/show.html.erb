@@ -21,10 +21,8 @@
 
     <%= render partial: 'event_comment_form', resource:  @event %>
 
-    <%= sync_new partial: 'event_comment', resource: Comment.new, scope: @event, refetch: true %>
-    <% @event.comments.order('created_at DESC').each do |comment| %>
-      <%= sync partial: 'event_comment', resource: comment, refetch: true %>
-    <% end %>
+    <%= sync_new partial: 'event_comment', resource: Comment.new, scope: @event, refetch: true, direction: :prepend %>
+    <%= sync partial: 'event_comment', collection: @event.comments.order('created_at DESC'), refetch: true %>
 
     <br/>
 
