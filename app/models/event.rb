@@ -7,4 +7,9 @@ class Event < ActiveRecord::Base
   has_many :users, through: :holders
 
   before_destroy {|event| event.users.clear}
+  
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
 end

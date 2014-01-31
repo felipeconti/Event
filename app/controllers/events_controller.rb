@@ -116,7 +116,8 @@ class EventsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      id = /^([0-9]*)-/.match(params[:id])[0]
+      @event = Event.find(id)
     end
 
     def valid_super_user
