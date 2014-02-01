@@ -7,17 +7,12 @@
     <tr>
       <th><%= t("name")%></th>
       <th><%= t("participation")%></th>
-      <% if current_user.super_user %>
-        <th><%=t 'actions', :default => t("helpers.actions") %></th>
-      <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <%# @events.each do |event| %>
-        <%= sync partial: 'event_row', collection: @events %>
-    <%# end %>
-    <%= sync_new partial: 'event_row', resource: Event.new, direction: :append %>
+    <%= sync partial: 'event_row', collection: @events, refetch: true %>
+    <%= sync_new partial: 'event_row', resource: Event.new, refetch: true, direction: :append %>
   </tbody>
 </table>
 

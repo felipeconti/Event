@@ -11,7 +11,7 @@
 
 <br>
 
-<% if current_user.super_user %>
+<% if user_can_modify?(@event) %>
   <div class="add-master-button">
     <%= link_to t('helpers.titles.new',:model => t("models.poll")), new_event_poll_path(@event), class: 'btn btn-primary' %>
   </div>

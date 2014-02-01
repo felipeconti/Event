@@ -11,7 +11,7 @@ module EventsHelper
 	end
 
   def member_of?(event, user)
-    #require "pry"; binding.pry
+    # require "pry"; binding.pry
     event.users.include?(user)
   end
   

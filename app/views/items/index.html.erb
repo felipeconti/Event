@@ -11,7 +11,7 @@
       <th><%= t("description")%></th>
       <th><%= t("amount")%></th>
       <th><%= t("value")%></th>
-      <% if current_user.super_user %>
+      <% if user_can_modify?(@event) %>
         <th><%=t 'actions', :default => t("helpers.actions") %></th>
       <% end %>
     </tr>
@@ -25,7 +25,7 @@
 
 <br>
 
-<% if current_user.super_user %>
+<% if user_can_modify?(@event) %>
   <div class="add-master-button">
     <%= link_to t('helpers.titles.new',:model => t("models.item")), new_event_item_path(@event), class: 'btn btn-primary' %>
   </div>

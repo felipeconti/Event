@@ -1,5 +1,7 @@
 class PollsController < ApplicationController
 
+  include ApplicationHelper
+
   before_action :find_event
 
   before_action :set_poll, only: [:show, :edit, :update, :destroy, :like, :dislike]
@@ -97,7 +99,7 @@ class PollsController < ApplicationController
     end
 
     def valid_super_user
-      unless current_user.super_user
+      unless user_can_modify?(@event)
         flash[:notice] = t("oops_not_access")
         redirect_to event_poll_url
       end

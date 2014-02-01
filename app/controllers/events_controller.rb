@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  include ApplicationHelper
+
   before_action :set_event, only: [:show, :edit, :update, :destroy, :request_participation]
 
   before_action :valid_super_user, only: [:new, :edit, :destroy]
@@ -39,7 +42,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.owner_id = current_user.id
     
-    update_users
+    update_users([current_user.id])
 
     respond_to do |format|
       if @event.save
@@ -110,8 +113,8 @@ class EventsController < ApplicationController
   
   private
   
-    def update_users
-      @event.users = User.find(params["users_ids"] || [])
+    def update_users(user = [])
+      @event.users = User.find(params["users_ids"] || user)
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -121,7 +124,7 @@ class EventsController < ApplicationController
     end
 
     def valid_super_user
-      unless current_user.super_user
+      unless user_can_modify?(@event)
         flash[:error] = t("oops_not_access")
         redirect_to events_url
       end

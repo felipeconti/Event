@@ -5,7 +5,7 @@
     <td><%= item.amount %></td>
     <td><%= item.value %></td>
     
-    <% if current_user.super_user %>
+    <% if user_can_modify?(@event) %>
         <td class="btn_actions">
         <%= link_to t('edit', :default => t("helpers.links.edit")), edit_event_item_path(@event, item), :class => 'btn btn-mini' %>
         <%= link_to t('destroy', :default => t("helpers.links.destroy")),

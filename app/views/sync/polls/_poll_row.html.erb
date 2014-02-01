@@ -17,7 +17,7 @@
         <span class="badge"><%= poll.dislikes.size %></span>
 
     </td>
-    <% if current_user.super_user %>
+    <% if user_can_modify?(@event) %>
         <td class="btn_actions">
         <%= link_to t('edit', :default => t("helpers.links.edit")), edit_event_poll_path(@event, poll), :class => 'btn btn-mini' %>
         <%= link_to t('destroy', :default => t("helpers.links.destroy")),

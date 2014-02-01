@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  include ApplicationHelper
+
   before_action :find_event
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
@@ -85,7 +87,7 @@ class ItemsController < ApplicationController
     end
 
     def valid_super_user
-      unless current_user.super_user
+      unless user_can_modify?(@event)
         flash[:notice] = t("oops_not_access")
         redirect_to event_item_url
       end
