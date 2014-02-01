@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130021803) do
+ActiveRecord::Schema.define(version: 20140201142458) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20140130021803) do
     t.integer  "user_id"
     t.integer  "event_id"
     t.boolean  "edit",       default: false
-    t.boolean  "owner",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
