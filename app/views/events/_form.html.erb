@@ -19,7 +19,11 @@
     </h2>
     <% @users.each do |user| %>
         <div>
-          <%= check_box_tag "users_ids[]", user.id, @event.users.include?(user) %>
+          <% if user.id == @event.owner_id or ( @event.new_record? and current_user == user ) %>
+            <%= check_box_tag "users_ids[]", user.id, true, disabled: true %>
+          <% else %>
+            <%= check_box_tag "users_ids[]", user.id, @event.users.include?(user) %>
+          <% end %>
           <%= user.name%>
         </div>
     <% end %>
@@ -27,7 +31,7 @@
     <div class="form-actions">
         <%= f.button :submit, :class => 'btn-primary' %>
         <%= link_to t('cancel', :default => t("helpers.links.cancel")),
-                  :back, :class => 'btn' %>
+                  @event.new_record? ? events_path : event_path(@event), :class => 'btn' %>
     </div>
 
 <% end %>

@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   before_action :set_event, only: [:show, :edit, :update, :destroy, :request_participation]
 
-  before_action :valid_super_user, only: [:new, :edit, :destroy]
+  before_action :valid_super_user, only: [:edit, :destroy]
 
   # GET /events
   # GET /events.json
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.owner_id = current_user.id
     
-    update_users([current_user.id])
+    update_users
 
     respond_to do |format|
       if @event.save
@@ -90,7 +90,6 @@ class EventsController < ApplicationController
 
   def request_participation
     @text = t("req_notification", user_name: current_user.name, event_name: @event.name)
-    #require "pry"; binding.pry
 
     if Notification.where("user_id = #{@event.owner_id} and description = '#{@text}'").count == 0
       @notification = Notification.new
@@ -113,8 +112,15 @@ class EventsController < ApplicationController
   
   private
   
-    def update_users(user = [])
-      @event.users = User.find(params["users_ids"] || user)
+    def update_users
+
+      users = []
+      users = params["users_ids"] if params["users_ids"]
+      users << @event.owner_id
+
+      # require "pry"; binding.pry
+
+      @event.users = User.find(users)
     end
 
     # Use callbacks to share common setup or constraints between actions.
