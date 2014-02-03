@@ -14,19 +14,7 @@
     <%= f.input :name, :autofocus => true %>
     <%= f.input :description %>
 
-    <h2>
-      Escolha os participantes deste evento:
-    </h2>
-    <% @users.each do |user| %>
-        <div>
-          <% if user.id == @event.owner_id or ( @event.new_record? and current_user == user ) %>
-            <%= check_box_tag "users_ids[]", user.id, true, disabled: true %>
-          <% else %>
-            <%= check_box_tag "users_ids[]", user.id, @event.users.include?(user) %>
-          <% end %>
-          <%= user.name%>
-        </div>
-    <% end %>
+    <%= render partial: 'users_form', :locals => { :f => f } %>
 
     <div class="form-actions">
         <%= f.button :submit, :class => 'btn-primary' %>
