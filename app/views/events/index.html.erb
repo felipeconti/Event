@@ -12,7 +12,6 @@
 
   <tbody>
     <%= sync partial: 'event_row', collection: @events, refetch: true %>
-    <%= sync_new partial: 'event_row', resource: Event.new, refetch: true, direction: :append %>
   </tbody>
 </table>
 

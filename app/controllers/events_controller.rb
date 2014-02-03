@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = current_user.super_user ? Event.all : current_user.events
   end
 
   # GET /events/1

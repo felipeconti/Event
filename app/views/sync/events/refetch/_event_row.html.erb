@@ -1,7 +1,11 @@
 <tr>
     <td><%= link_to '  ' + event.name, event, :class=>"icon-search" %></td>
     <% if member_of?(event, current_user) %>
-      <th><%=t("participating")%></th>
+      <% if current_user.id == event.owner_id %>
+        <th><%=t("owner")%></th>
+      <% else %>
+        <th><%=t("participating")%></th>
+      <% end %>
     <% else %>
       <th><%= link_to t("request_participation"), request_participation_event_path(event) %>
       </th>
